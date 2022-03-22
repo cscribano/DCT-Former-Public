@@ -1,0 +1,72 @@
+{
+
+  "experiment" : {
+    "epochs": 15,
+    "device": "cuda",
+    "ck_epoch_step": 1,
+    "val_epoch_step": 999
+  },
+
+  "deepspeed" : {
+    "train_batch_size": 12,
+    "gradient_accumulation_steps": 1,
+    "fp16": {
+      "enabled": false
+    },
+    "zero_optimization": false,
+    "steps_per_print": 1e5
+  },
+
+  "model" : {
+    "name": "BERTogna_ImDbClassification",
+    "args": {},
+    "initializer_range": 0.02,
+    "encoder_blocks": 2,
+    "transformer_hid_dim": 512,
+    "vocab_size": 30522,
+    "max_seq_len": 512,
+    "fixed_pos_encoding": true,
+    "dropout": 0.1,
+    "classifier_dropout": 0.0,
+    "pooler_dim": 128
+  },
+
+  "attention": {
+    "type": "VanillaAttention",
+    "emb_dim": 128,
+    "head_dim": 64,
+    "n_heads": 2,
+    "kv_emb_dim": null,
+    "dropout": 0.1
+  },
+
+  "optimizer" : {
+    "name": "Adam",
+    "args": {
+      "lr": 3e-6
+    },
+    "learning_rates" : {}
+  },
+
+  "dataset" : {
+    "data_root": "/home/carmelo/DATASETS/IMDB/aclImdb",
+    "train_dataset": {
+      "name": "ImDb_sentiment",
+      "args": {
+        "mode": "train"
+      },
+      "loader_args" : {}
+    },
+
+    "val_dataset": {
+      "name": "ImDb_sentiment",
+      "args": {
+        "mode": "test"
+      },
+      "loader_args": {
+        "batch_size": 8,
+        "num_workers": 4
+      }
+    }
+  }
+}

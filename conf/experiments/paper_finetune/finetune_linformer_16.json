@@ -1,0 +1,86 @@
+{
+
+  "experiment" : {
+    "epochs": 10,
+    "device": "cuda",
+    "logdir": "/data/logs",
+    "ck_epoch_step": 1,
+    "val_epoch_step": 999,
+    "is_finetune": true
+  },
+
+  "deepspeed" : {
+    "train_batch_size": 64,
+    "gradient_accumulation_steps": 1,
+    "fp16": {
+        "enabled": true,
+        "opt_level": "O2",
+        "keep_batchnorm_fp32": true
+    },
+    "zero_optimization": false,
+    "steps_per_print": 1e5
+  },
+
+  "model" : {
+    "name": "BERTogna_ImDbClassification",
+    "args": {
+      "pretrain_ck" : "/data/logs/log/DCT-Former/paper/pretrain_linformer_16.2022.2.16.13.24.46.5wixa7a2/training_ck/mp_rank_00_model_states.pt"
+    },
+    "initializer_range": 0.02,
+    "encoder_blocks": 4,
+    "transformer_hid_dim": 2048,
+    "vocab_size": 30522,
+    "max_seq_len": 4096,
+    "fixed_pos_encoding": true,
+    "dropout": 0.1,
+    "classifier_dropout": 0.0,
+    "pooler_dim": 512
+  },
+
+  "attention": {
+    "type": "LinformerAttention",
+    "linformer_k": 16,
+    "dataset_N": 1024,
+    "emb_dim": 512,
+    "head_dim": 64,
+    "n_heads": 8,
+    "kv_emb_dim": null,
+    "dropout": 0.0
+  },
+
+  "optimizer" : {
+    "name": "AdamW",
+    "args": {
+      "lr": 1e-5,
+      "betas": [0.9, 0.98],
+      "eps": 1e-6
+    },
+    "weight_decay": 0.01,
+    "learning_rates" : {}
+  },
+
+  "dataset" : {
+    "data_root": "/data/IMDB/aclImdb",
+    "max_seq_len": 1024,
+    "train_dataset": {
+      "name": "ImDb_sentiment",
+      "collate_fn": "collate_fn_pad_fixed",
+      "args": {
+        "mode": "train"
+      },
+      "loader_args" : {}
+    },
+
+    "val_dataset": {
+      "name": "ImDb_sentiment",
+      "collate_fn": "collate_fn_pad_fixed",
+      "args": {
+        "mode": "test"
+      },
+      "loader_args": {
+        "batch_size": 8,
+        "num_workers": 4
+      }
+    }
+  }
+}

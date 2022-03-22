@@ -1,0 +1,13 @@
+numpy~=1.21.2
+pillow~=8.4.0
+torchvision~=0.11.2
+click~=8.0.3
+deepspeed~=0.5.8
+pytz~=2021.3
+six~=1.16.0
+nltk~=3.6.6
+h5py~=2.10.0
+transformers~=4.14.1
+wikiextractor~=3.0.6
+sh~=1.14.2
+opencv-python~=4.5.4.60

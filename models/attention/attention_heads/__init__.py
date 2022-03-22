@@ -1,0 +1,7 @@
+from models.attention.attention_heads.attention_linear import LinearAttention
+from models.attention.attention_heads.attention_linformer import LinformerAttention
+from models.attention.attention_heads.attention_nystrom import NystromAttention
+#from models.attention.attention_heads.attention_performer import PerformerAttention
+from models.attention.attention_heads.attention_reformer import LSHAttention
+from models.attention.attention_heads.attention_dct import DCTAttention
+from models.attention.attention_heads.attention_dct_ideal import DCTAttentionIdeal

@@ -1,0 +1,86 @@
+{
+
+  "experiment" : {
+    "epochs": 10000,
+    "max_steps": 10e4,
+    "device": "cuda",
+    "logdir": "/data/logs",
+    "ck_epoch_step": 30,
+    "val_epoch_step": 30,
+    "max_predictions_per_seq": 20
+  },
+
+  "deepspeed" : {
+    "train_batch_size": 4096,
+    "gradient_accumulation_steps": 2,
+    "amp": {
+        "enabled": true,
+        "opt_level": "O2",
+        "keep_batchnorm_fp32": true
+    },
+    "zero_optimization": false,
+    "steps_per_print": 1e5
+  },
+
+  "model" : {
+    "name": "BERTogna_LMPrediction",
+    "args": {},
+    "initializer_range": 0.02,
+    "encoder_blocks": 4,
+    "transformer_hid_dim": 2048,
+    "vocab_size": 30522,
+    "max_seq_len": 4096,
+    "fixed_pos_encoding": true,
+    "dropout": 0.1,
+    "classifier_dropout": 0.0,
+    "pooler_dim": 512
+  },
+
+  "attention": {
+    "type": "VanillaAttention",
+    "emb_dim": 512,
+    "head_dim": 64,
+    "n_heads": 8,
+    "kv_emb_dim": null,
+    "dropout": 0.1
+  },
+
+  "optimizer" : {
+    "name": "AdamW",
+    "args": {
+      "lr": 1e-3,
+      "betas": [0.9, 0.98],
+      "eps": 1e-6
+    },
+    "weight_decay": 0.01,
+    "learning_rates" : {}
+  },
+
+  "lr_scheduler" : {
+    "scheduler": "StepScheduler",
+    "curve": "LinearCurve",
+    "args": {
+      "warmup_proportion": 0.06
+    }
+  },
+
+  "dataset" : {
+    "data_root": "/data/samples",
+    "num_workers":12,
+    "async_worker": true,
+
+    "train_dataset": {
+      "args" : {},
+      "loader_args" : {}
+    },
+
+    "val_dataset": {
+      "loader_args": {
+        "batch_size": 16,
+        "num_workers": 4,
+        "pin_memory": true
+      }
+
+    }
+  }
+}

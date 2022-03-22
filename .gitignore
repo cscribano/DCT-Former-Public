@@ -1,0 +1,27 @@
+### Pycharm stuffs
+.idea/
+*__pycache__/
+
+### Pytorch model weights
+*.pth
+
+### logs
+/log/*
+
+### weights
+/weights/*.pth
+
+## Pre computed Detections
+/data/augmented_test.json
+/data/augmented_train.json
+
+## images
+/evaluation/attention_maps
+evaluation/qkvs*
+utils/dct/*.png
+
+## Pre trained nlp
+/nlp/bert_ft_experimental/*
+
+## python
+.ipynb_checkpoints
