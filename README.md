@@ -1,7 +1,7 @@
 # DCT-Former: Efficient Self-Attention with Discrete Cosine Transform [PAPER](https://arxiv.org/pdf/2203.01178.pdf)
 
 ## Requirements
-* Create a conda envrionment using the provided `envrionment.yml` in `data` as described [HERE](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file)
+* Create a conda envrionment using the provided `envrionment.yml` in `docs` as described [HERE](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file)
 ```
 conda env create -f environment.yml
 ```
