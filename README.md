@@ -1,4 +1,4 @@
-# DCT-Former: Efficient Self-Attention with Discrete Cosine Transform [PAPER](https://arxiv.org/pdf/2203.01178.pdf)
+# DCT-Former: Efficient Self-Attention with Discrete Cosine Transform [PAPER](https://rdcu.be/c47Xz)
 
 ## Requirements
 * Create a conda envrionment using the provided `envrionment.yml` in `docs` as described [HERE](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file)
@@ -69,14 +69,17 @@ To compute the pretraining metrics (Accuracy) on the validation set.
 * torch-dct: https://github.com/zh217/torch-dct
 * Deep Speed examples: https://github.com/microsoft/DeepSpeedExamples
 
-## Reference (Pre-print)
+## Reference (Published in Journal of Scientific Computing)
 ```
-@article{scribano2022dct,
+@article{scribano2023dct,
   title={DCT-Former: Efficient Self-Attention with Discrete Cosine Transform},
   author={Scribano, Carmelo and Franchini, Giorgia and Prato, Marco and Bertogna, Marko},
-  journal={arXiv e-prints},
-  pages={arXiv--2203},
-  year={2022}
+  journal={Journal of Scientific Computing},
+  volume={94},
+  number={3},
+  pages={67},
+  year={2023},
+  publisher={Springer}
 }
 ```
 
